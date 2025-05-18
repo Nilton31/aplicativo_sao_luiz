@@ -53,6 +53,68 @@ const Entradar_Texto = () => {
   );
 };
 
+const Cadastrar = () => {
+  return (
+    <ScrollView>
+      <View style={styles_cadastrar.conteiner}>
+        <Image source={require('./imagens/logo_sao_luiz.jpg')
+        } style={styles.conteiner_logo}>
+        </Image>
+        <View style={styles_cadastrar.conteiner_input}>
+          <Text style={styles_cadastrar.title_h1}> Faça o Seu Cadastro Aqui</Text>
+          <Text style={styles_cadastrar.texto_algin}>CPF:</Text>
+          <TextInput
+            style={styles_cadastrar.meutextinput}
+            keyboardType="numeric"
+            placeholder="****"
+            maxLength={12}></TextInput>
+          <Text style={styles_cadastrar.texto_algin}
+          >Nome Completo:</Text>
+          <TextInput
+            style={styles_cadastrar.meutextinput}
+            keyboardType="default">
+          </TextInput>
+          <Text style={styles_cadastrar.texto_algin}
+          >Data de Nascimento:</Text>
+          <TextInput
+            style={styles_cadastrar.meutextinput}
+            keyboardType="numeric"
+            placeholder="dd/mm/aaaa"
+          ></TextInput>
+          <Text style={styles_cadastrar.texto_algin}>Endereço:</Text>
+          <TextInput
+            style={styles_cadastrar.meutextinput}
+            keyboardType="default">
+          </TextInput>
+          <Text style={styles_cadastrar.texto_algin}>Número de Telefone:</Text>
+          <TextInput
+            style={styles_cadastrar.meutextinput}
+            keyboardType="number-pad"
+            maxLength={11}>
+          </TextInput>
+          <Text style={styles_cadastrar.texto_algin}>Email:</Text>
+          <TextInput
+            style={styles_cadastrar.meutextinput}
+            keyboardType="email-address">
+          </TextInput>
+          <Text style={styles_cadastrar.texto_algin}
+          >Senha:
+          </Text>
+          <Text style={styles_cadastrar.texto_algin_senha}>a senha deve têm 8 caracteres alfanuméricos entre @nA90?</Text>
+          <TextInput
+            style={styles_cadastrar.meutextinput}
+            keyboardType="email-address">
+          </TextInput>
+        <View style={styles_cadastrar.conteiner_botoes}>
+          <Button title="Finalizar"></Button>
+          <Button title="Voltar" color={"red"}></Button>
+        </View>
+        </View>
+      </View>
+    </ScrollView>
+  );
+};
+
 const Cabecalho = () => {
   return (
     <View style={styles.cabeçalho}>
@@ -123,6 +185,12 @@ const styles = StyleSheet.create({
     marginTop: 20
   },
 
+  title_h1: {
+    textAlign: "center",
+    fontSize: 23,
+    fontWeight: "bold"
+  },
+
   conteiner_text: {
     marginHorizontal: 10,
     marginVertical: 90,
@@ -181,6 +249,66 @@ const styles = StyleSheet.create({
   }
 });
 
+const styles_cadastrar = StyleSheet.create({
+
+  conteiner: {
+    marginHorizontal: 20,
+    marginVertical: 90,
+    marginTop: "auto"
+  },
+
+  conteiner_logo: {
+    width: 220,
+    height: 220,
+    marginTop: 20
+  },
+
+  conteiner_input :{
+    backgroundColor: "#FFF8DC",
+    borderRadius: 10,
+    padding: 5
+  },
+
+  title_h1: {
+    textAlign: "center",
+    fontSize: 23,
+    fontWeight: "bold"
+  },
+
+  conteiner_text: {
+    marginHorizontal: 10,
+    marginVertical: 90,
+  },
+
+  meutextinput: {
+    marginTop: 25,
+    height: 35,
+    margin: 12,
+    borderWidth: 1
+
+  },
+  texto_algin: {
+    marginTop: 20,
+    marginLeft: 10,
+    padding: 5,
+    fontSize: 15
+
+  },
+
+  texto_algin_senha: {
+    fontSize: 11,
+    fontWeight: "ultralight",
+    marginTop: 7,
+    marginLeft: 10,
+    padding: 5
+  },
+
+  conteiner_botoes: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    margin: 15
+  },
+})
 
 const App_Main = () => {
   return (
@@ -191,7 +319,8 @@ const App_Main = () => {
       <Login_Usuario></Login_Usuario>
       <Entradar_Texto></Entradar_Texto> */}
       {/* <Tela_Inicio_App></Tela_Inicio_App> */}
-      <Entradar_Texto></Entradar_Texto>
+      {/* <Entradar_Texto></Entradar_Texto> */}
+      <Cadastrar></Cadastrar>
     </View>
   );
 
