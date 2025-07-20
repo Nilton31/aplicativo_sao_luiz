@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Image, TextInput, Text, ScrollView, Button, Alert } from "react-native";
-import { NavigationContainer } from '@react-navigation/native-stack';
+import { NavigationContainer } from '@react-navigation/native';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useNavigation } from '@react-navigation/native';
 import estilosCadastrar from './estilos/componentes/estilosCadastrar.js';
@@ -145,7 +146,7 @@ import estilosProdutos from './estilos/componentes/estilosProdutos.js';
 //   );
 // };
 
-const ProdutoScreen = () => {
+function ProdutoIogurteScreen({ navigator }) {
     // const navigation = useNavigation();
     return (
         <ScrollView style={estilosProdutos.barra_rolagem}>
@@ -259,26 +260,266 @@ const ProdutoScreen = () => {
                     </View>
                 </View>
             </View>
+            {/* <Button styles={estilosProdutos.conteiner_botoes} title='Voltar' onPress={() => navigation.navigate('Produtos')}>
+            </Button> */}
+        </ScrollView >
+
+    );
+};
+
+function ProdutoFrutasScreen({ navigator }) {
+    // const navigation = useNavigation();
+    return (
+        <ScrollView style={estilosProdutos.barra_rolagem}>
             <View style={estilosProdutos.row}>
                 <View style={estilosProdutos.col}>
-                    <Text>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</Text>
+                    <Image source={require('./imagens/produtos/frutas/Maca.jpg')
+                    } style={estilosProdutos.imagen_produto}>
+                    </Image>
+                    <View style={estilosProdutos.discricao_produto}>
+                        <Text style={estilosProdutos.preco_produto}>R$ 1,99</Text>
+                        <Text>
+                            toddynho
+                        </Text>
+                        <Text>Bebida Láctea UHT</Text>
+                        <Text>Chocolate Toddynho Caixa</Text>
+                        <Text>200ml</Text>
+                    </View>
+                    <View style={estilosProdutos.botao_adicionar}><Button title='adicionar'>
+                    </Button>
+                    </View>
+
                 </View>
                 <View style={estilosProdutos.col}>
-                    <Text>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</Text>
+                    <Image source={require('./imagens/produtos/frutas/Abacate1.jpg')
+                    } style={estilosProdutos.imagen_produto}>
+                    </Image>
+                    <View style={estilosProdutos.discricao_produto}>
+                        <Text style={estilosProdutos.preco_produto}>R$ 3,49</Text>
+                        <Text>
+                            Nescau
+                        </Text>
+                        <Text>Bebida Láctea UHT</Text>
+                        <Text>Chocolate Nescau Caixa</Text>
+                        <Text>180ml</Text>
+                    </View>
+                    <View style={estilosProdutos.botao_adicionar}><Button title='adicionar'>
+                    </Button>
+                    </View>
                 </View>
             </View>
             <View style={estilosProdutos.row}>
                 <View style={estilosProdutos.col}>
-                    <Text>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</Text>
+                    <Image source={require('./imagens/produtos/frutas/Caju.jpg')
+                    } style={estilosProdutos.imagen_produto}>
+                    </Image>
+                    <View style={estilosProdutos.discricao_produto}>
+                        <Text style={estilosProdutos.preco_produto}>R$ 3,99</Text>
+                        <Text>
+                            Itambé
+                        </Text>
+                        <Text>Iogurte Parcilamente</Text>
+                        <Text>Desnatado Morango</Text>
+                        <Text>Itambé Frasco 170g</Text>
+                    </View>
+                    <View style={estilosProdutos.botao_adicionar}><Button title='adicionar'>
+                    </Button>
+                    </View>
                 </View>
                 <View style={estilosProdutos.col}>
-                    <Text>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</Text>
+                    <Image source={require('./imagens/produtos/frutas/Goiaba.jpg')
+                    } style={estilosProdutos.imagen_produto}>
+                    </Image>
+                    <View style={estilosProdutos.discricao_produto}>
+                        <Text style={estilosProdutos.preco_produto}>R$ 7,99</Text>
+                        <Text>
+                            Nestlé
+                        </Text>
+                        <Text>Iogurte Parcialmente</Text>
+                        <Text>Desnatado Morango</Text>
+                        <Text>Salada de Frutas</Text>
+                    </View>
+                    <View style={estilosProdutos.botao_adicionar}><Button title='adicionar'>
+                    </Button>
+                    </View>
+                </View>
+            </View>
+            <View style={estilosProdutos.row}>
+                <View style={estilosProdutos.col}>
+                    <Image source={require('./imagens/produtos/frutas/Limao.jpg')
+                    } style={estilosProdutos.imagen_produto}>
+                    </Image>
+                    <View style={estilosProdutos.discricao_produto}>
+                        <Text style={estilosProdutos.preco_produto}>R$ 6,98</Text>
+                        <Text>
+                            Nestlé
+                        </Text>
+                        <Text>Iogurte Parcilamente</Text>
+                        <Text>Desnatado Grego</Text>
+                        <Text>Maracujá + Morango</Text>
+                    </View>
+                    <View style={estilosProdutos.botao_adicionar}><Button title='adicionar'>
+                    </Button>
+                    </View>
+                </View>
+                <View style={estilosProdutos.col}>
+                    <Image source={require('./imagens/produtos/frutas/abacaxi.jpg')
+                    } style={estilosProdutos.imagen_produto}>
+                    </Image>
+                    <View style={estilosProdutos.discricao_produto}>
+                        <Text style={estilosProdutos.preco_produto}>R$ 12,22</Text>
+                        <Text>
+                            Danone
+                        </Text>
+                        <Text>Iogurte de</Text>
+                        <Text>Morango</Text>
+                        <Text>Bebida</Text>
+                        <Text>850g</Text>
+                    </View>
+                    <View style={estilosProdutos.botao_adicionar_danone}><Button title='adicionar'>
+                    </Button>
+                    </View>
                 </View>
             </View>
             {/* <Button styles={estilosProdutos.conteiner_botoes} title='Voltar' onPress={() => navigation.navigate('Produtos')}>
             </Button> */}
         </ScrollView >
 
+    );
+};
+
+function ProdutoCarnesScreen({ navigator }) {
+    // const navigation = useNavigation();
+    return (
+        <ScrollView style={estilosProdutos.barra_rolagem}>
+            <View style={estilosProdutos.row}>
+                <View style={estilosProdutos.col}>
+                    <Image source={require('./imagens/produtos/carnes/bife.jpg')
+                    } style={estilosProdutos.imagen_produto}>
+                    </Image>
+                    <View style={estilosProdutos.discricao_produto}>
+                        <Text style={estilosProdutos.preco_produto}>R$ 1,99</Text>
+                        <Text>
+                            bife
+                        </Text>
+                        <Text>Bebida Láctea UHT</Text>
+                        <Text>Chocolate Toddynho Caixa</Text>
+                        <Text>200ml</Text>
+                    </View>
+                    <View style={estilosProdutos.botao_adicionar}><Button title='adicionar'>
+                    </Button>
+                    </View>
+
+                </View>
+                <View style={estilosProdutos.col}>
+                    <Image source={require('./imagens/produtos/carnes/bisteca_porco.png')
+                    } style={estilosProdutos.imagen_produto}>
+                    </Image>
+                    <View style={estilosProdutos.discricao_produto}>
+                        <Text style={estilosProdutos.preco_produto}>R$ 3,49</Text>
+                        <Text>
+                            bisteca de porco
+                        </Text>
+                        <Text>Bebida Láctea UHT</Text>
+                        <Text>Chocolate Nescau Caixa</Text>
+                        <Text>180ml</Text>
+                    </View>
+                    <View style={estilosProdutos.botao_adicionar}><Button title='adicionar'>
+                    </Button>
+                    </View>
+                </View>
+            </View>
+            <View style={estilosProdutos.row}>
+                <View style={estilosProdutos.col}>
+                    <Image source={require('./imagens/produtos/carnes/cx-mole.jpg')
+                    } style={estilosProdutos.imagen_produto}>
+                    </Image>
+                    <View style={estilosProdutos.discricao_produto}>
+                        <Text style={estilosProdutos.preco_produto}>R$ 3,99</Text>
+                        <Text>
+                            Itambé
+                        </Text>
+                        <Text>Iogurte Parcilamente</Text>
+                        <Text>Desnatado Morango</Text>
+                        <Text>Itambé Frasco 170g</Text>
+                    </View>
+                    <View style={estilosProdutos.botao_adicionar}><Button title='adicionar'>
+                    </Button>
+                    </View>
+                </View>
+                <View style={estilosProdutos.col}>
+                    <Image source={require('./imagens/produtos/carnes/file_de_peixe.jpg')
+                    } style={estilosProdutos.imagen_produto}>
+                    </Image>
+                    <View style={estilosProdutos.discricao_produto}>
+                        <Text style={estilosProdutos.preco_produto}>R$ 7,99</Text>
+                        <Text>
+                            File de Peixe
+                        </Text>
+                        <Text>Iogurte Parcialmente</Text>
+                        <Text>Desnatado Morango</Text>
+                        <Text>Salada de Frutas</Text>
+                    </View>
+                    <View style={estilosProdutos.botao_adicionar}><Button title='adicionar'>
+                    </Button>
+                    </View>
+                </View>
+            </View>
+            <View style={estilosProdutos.row}>
+                <View style={estilosProdutos.col}>
+                    <Image source={require('./imagens/produtos/carnes/frango.jpeg')
+                    } style={estilosProdutos.imagen_produto}>
+                    </Image>
+                    <View style={estilosProdutos.discricao_produto}>
+                        <Text style={estilosProdutos.preco_produto}>R$ 6,98</Text>
+                        <Text>
+                            frango
+                        </Text>
+                        <Text>Iogurte Parcilamente</Text>
+                        <Text>Desnatado Grego</Text>
+                        <Text>Maracujá + Morango</Text>
+                    </View>
+                    <View style={estilosProdutos.botao_adicionar}><Button title='adicionar'>
+                    </Button>
+                    </View>
+                </View>
+                <View style={estilosProdutos.col}>
+                    <Image source={require('./imagens/produtos/carnes/linguica_porco.jpg')
+                    } style={estilosProdutos.imagen_produto}>
+                    </Image>
+                    <View style={estilosProdutos.discricao_produto}>
+                        <Text style={estilosProdutos.preco_produto}>R$ 12,22</Text>
+                        <Text>
+                            Danone
+                        </Text>
+                        <Text>Iogurte de</Text>
+                        <Text>Morango</Text>
+                        <Text>Bebida</Text>
+                        <Text>850g</Text>
+                    </View>
+                    <View style={estilosProdutos.botao_adicionar_danone}><Button title='adicionar'>
+                    </Button>
+                    </View>
+                </View>
+            </View>
+            {/* <Button styles={estilosProdutos.conteiner_botoes} title='Voltar' onPress={() => navigation.navigate('Produtos')}>
+            </Button> */}
+        </ScrollView >
+
+    );
+};
+
+
+
+const Drawer = createDrawerNavigator()
+
+function MyDrawer() {
+    return (
+        <Drawer.Navigator initialRouteName="Iogurte">
+            <Drawer.Screen name='Iogurte' component={ProdutoIogurteScreen}></Drawer.Screen>
+            <Drawer.Screen name='Frutas' component={ProdutoFrutasScreen}></Drawer.Screen>
+            <Drawer.Screen name='Carnes' component={ProdutoCarnesScreen}></Drawer.Screen>
+        </Drawer.Navigator>
     );
 };
 
@@ -297,18 +538,28 @@ const ProdutoScreen = () => {
 
 
 
-const AppMain = () => {
-    return (
-        <ProdutoScreen></ProdutoScreen>
-        // <View>
-        //     <NavigationContainer>
-        //         <RootStack />
-        //     </NavigationContainer>
-        // </View>
-    )
-};
+// const AppMain = () => {
+//     return (
+//         <ProdutCarnesScreen></ProdutCarnesScreen>
+//         // <ProdutFrutasScreen></ProdutFrutasScreen>
+//         // <ProdutoLancheScreen></ProdutoLancheScreen>
 
-export default AppMain;
+//         // <View>
+//         //     <NavigationContainer>
+//         //         <RootStack />
+//         //     </NavigationContainer>
+//         // </View>
+//     )
+// };
+
+export default function AppMain() {
+    return (
+        <NavigationContainer>
+            <MyDrawer></MyDrawer>
+        </NavigationContainer>
+    );
+
+}
 
 // export default function AppMain() {
 //     return (
