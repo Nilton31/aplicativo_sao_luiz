@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Image, TextInput, Text, ScrollView, Button, Alert } from "react-native";
 import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useNavigation } from '@react-navigation/native';
@@ -146,8 +147,7 @@ import estilosProdutos from './estilos/componentes/estilosProdutos.js';
 //   );
 // };
 
-function ProdutoIogurteScreen({ navigator }) {
-    // const navigation = useNavigation();
+function ProdutoScreen({ navigation }) {
     return (
         <ScrollView style={estilosProdutos.barra_rolagem}>
             <View style={estilosProdutos.row}>
@@ -260,17 +260,6 @@ function ProdutoIogurteScreen({ navigator }) {
                     </View>
                 </View>
             </View>
-            {/* <Button styles={estilosProdutos.conteiner_botoes} title='Voltar' onPress={() => navigation.navigate('Produtos')}>
-            </Button> */}
-        </ScrollView >
-
-    );
-};
-
-function ProdutoFrutasScreen({ navigator }) {
-    // const navigation = useNavigation();
-    return (
-        <ScrollView style={estilosProdutos.barra_rolagem}>
             <View style={estilosProdutos.row}>
                 <View style={estilosProdutos.col}>
                     <Image source={require('./imagens/produtos/frutas/Maca.jpg')
@@ -381,17 +370,6 @@ function ProdutoFrutasScreen({ navigator }) {
                     </View>
                 </View>
             </View>
-            {/* <Button styles={estilosProdutos.conteiner_botoes} title='Voltar' onPress={() => navigation.navigate('Produtos')}>
-            </Button> */}
-        </ScrollView >
-
-    );
-};
-
-function ProdutoCarnesScreen({ navigator }) {
-    // const navigation = useNavigation();
-    return (
-        <ScrollView style={estilosProdutos.barra_rolagem}>
             <View style={estilosProdutos.row}>
                 <View style={estilosProdutos.col}>
                     <Image source={require('./imagens/produtos/carnes/bife.jpg')
@@ -409,7 +387,6 @@ function ProdutoCarnesScreen({ navigator }) {
                     <View style={estilosProdutos.botao_adicionar}><Button title='adicionar'>
                     </Button>
                     </View>
-
                 </View>
                 <View style={estilosProdutos.col}>
                     <Image source={require('./imagens/produtos/carnes/bisteca_porco.png')
@@ -502,55 +479,131 @@ function ProdutoCarnesScreen({ navigator }) {
                     </View>
                 </View>
             </View>
-            {/* <Button styles={estilosProdutos.conteiner_botoes} title='Voltar' onPress={() => navigation.navigate('Produtos')}>
-            </Button> */}
         </ScrollView >
 
     );
 };
 
+function CarrinhoScreen({ navigation }) {
+    return (
+        <ScrollView style={estilosProdutos.barra_rolagem}>
+            <View style={{ flex: 1 }}>
+                <Image source={require('./imagens/carrinho/carrinho.png')
+                } style={{
+                    width: 200,
+                    height: 200,
+                    marginTop: 20,
+                    marginLeft: 90,
+                    marginRight: 90,
+                    margin: 'auto'
+                }}></Image>
+            </View>
+        </ScrollView >
 
+    );
+};
+
+function EntregaScreen({ navigation }) {
+    return (
+        <ScrollView style={estilosProdutos.barra_rolagem}>
+            <View style={{ flex: 1 }}>
+                <Image source={require('./imagens/entrega/entrega.png')
+                } style={{
+                    width: 200,
+                    height: 200,
+                    margin: 'auto',
+                    marginLeft: 90,
+                    marginRight: 90,
+                    marginTop: 20
+                }}></Image>
+            </View>
+        </ScrollView >
+    );
+};
+
+function ConfiguracaoScreen({ navigation }) {
+    return (
+        <ScrollView style={estilosCadastrar.configuracao}>
+            <View style={{ flex: 1 }}>
+                <Image source={require('./imagens/login/img_login.png')
+                } style={{
+                    width: 100,
+                    height: 100,
+                    margin: 'auto',
+                    marginTop: 20
+                }}></Image>
+            </View>
+            <View style={estilosCadastrar.conteiner}>
+                <View style={estilosCadastrar.conteiner_input}>
+                    <Text style={estilosCadastrar.texto_algin}
+                    >Usuário:</Text>
+                    <TextInput
+                        style={estilosCadastrar.meutextinput}
+                        keyboardType="default">
+                    </TextInput>
+                    <Text style={estilosCadastrar.texto_algin}>Endereço:</Text>
+                    <TextInput
+                        style={estilosCadastrar.meutextinput}
+                        keyboardType="default">
+                    </TextInput>
+                    <Text style={estilosCadastrar.texto_algin}>Número de Telefone:</Text>
+                    <TextInput
+                        style={estilosCadastrar.meutextinput}
+                        keyboardType="number-pad"
+                        maxLength={11}>
+                    </TextInput>
+                    <Text style={estilosCadastrar.texto_algin}>Email:</Text>
+                    <TextInput
+                        style={estilosCadastrar.meutextinput}
+                        keyboardType="email-address">
+                    </TextInput>
+                    <Text style={estilosCadastrar.texto_algin}
+                    >Nova Senha:
+                    </Text>
+                    <Text style={estilosCadastrar.texto_algin_senha}>a senha deve têm 8 caracteres alfanuméricos @nA90?</Text>
+                    <TextInput
+                        style={estilosCadastrar.meutextinput}
+                        keyboardType="email-address">
+                    </TextInput>
+                    <Text style={estilosCadastrar.texto_algin}
+                    >Confirma Senha:
+                    </Text>
+                    <TextInput
+                        style={estilosCadastrar.meutextinput}
+                        keyboardType="email-address">
+                    </TextInput>
+                    <View style={estilosCadastrar.conteiner_botoes}>
+                        <Button title="Cancelar" color={"red"}></Button>
+                        <Button title="Salvar"></Button>
+                    </View>
+                </View>
+            </View>
+        </ScrollView>
+    );
+}
+
+const Tab = createBottomTabNavigator();
+
+function MyTabs() {
+    return (
+        <Tab.Navigator>
+            <Tab.Screen name="Ofertas" component={ProdutoScreen} />
+            <Tab.Screen name="Carrinho" component={CarrinhoScreen} />
+            <Tab.Screen name="Entrega" component={EntregaScreen} />
+        </Tab.Navigator>
+    );
+}
 
 const Drawer = createDrawerNavigator()
 
 function MyDrawer() {
     return (
-        <Drawer.Navigator initialRouteName="Iogurte">
-            <Drawer.Screen name='Iogurte' component={ProdutoIogurteScreen}></Drawer.Screen>
-            <Drawer.Screen name='Frutas' component={ProdutoFrutasScreen}></Drawer.Screen>
-            <Drawer.Screen name='Carnes' component={ProdutoCarnesScreen}></Drawer.Screen>
+        <Drawer.Navigator>
+            <Drawer.Screen name='São Luiz' component={MyTabs}></Drawer.Screen>
+            <Drawer.Screen name='Configuracões' component={ConfiguracaoScreen}></Drawer.Screen>
         </Drawer.Navigator>
     );
 };
-
-// const Stack = createNativeStackNavigator();
-
-// function RootStack() {
-//     return (
-//         <>
-//             <Stack.Navigator initialRouteName="Entradar_Texto">
-//                 <Stack.Screen name="Entradar_Texto" component={Entradar_Texto} />
-//                 <Stack.Screen name="Produtos" component={ProdutoScreen} />
-//             </Stack.Navigator>
-//         </>
-//     );
-// }
-
-
-
-// const AppMain = () => {
-//     return (
-//         <ProdutCarnesScreen></ProdutCarnesScreen>
-//         // <ProdutFrutasScreen></ProdutFrutasScreen>
-//         // <ProdutoLancheScreen></ProdutoLancheScreen>
-
-//         // <View>
-//         //     <NavigationContainer>
-//         //         <RootStack />
-//         //     </NavigationContainer>
-//         // </View>
-//     )
-// };
 
 export default function AppMain() {
     return (
@@ -559,28 +612,4 @@ export default function AppMain() {
         </NavigationContainer>
     );
 
-}
-
-// export default function AppMain() {
-//     return (
-//         <>
-//             <NavigationContainer>
-//                 <RootStack />
-//             </NavigationContainer>
-//         </>
-//     );
-
-// };
-// return (
-//     <View>
-//         <Entradar_Texto></Entradar_Texto>
-//         {/* <Login></Login> */}
-//         {/* <Cabecalho></Cabecalho>
-//   <Produtos></Produtos> */}
-//         {/* <Tela_Inicio_App></Tela_Inicio_App>;
-//   <Login_Usuario></Login_Usuario>
-//   {/* <Tela_Inicio_App></Tela_Inicio_App> */}
-//         {/* <Entradar_Texto></Entradar_Texto> */}
-//         {/* <Cadastrar></Cadastrar> */}
-//     </View>
-// );
+};

@@ -1,6 +1,11 @@
 import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
+
+    configuracao:{
+        backgroundColor: "#F8F8FF"
+    },
+
     conteiner: {
         marginHorizontal: 20,
         marginVertical: 90,
@@ -15,9 +20,7 @@ export default StyleSheet.create({
     },
 
     conteiner_input: {
-        backgroundColor: "#FFF8DC",
-        borderRadius: 10,
-        padding: 5
+        padding: 10
     },
 
     title_h1: {
@@ -32,11 +35,10 @@ export default StyleSheet.create({
     },
 
     meutextinput: {
-        marginTop: 25,
+        marginTop: 10,
         height: 40,
         margin: 12,
-        borderWidth: 1
-
+        borderBottomWidth: 0.5
     },
     texto_algin: {
         marginTop: 20,

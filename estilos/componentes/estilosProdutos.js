@@ -2,8 +2,8 @@ import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
     barra_rolagem: {
-        marginTop: 35,
-        marginBottom: 90
+        marginTop: 5,
+        marginBottom: 0.5
     },
 
     row: {
