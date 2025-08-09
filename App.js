@@ -1,5 +1,5 @@
-import React from 'react';
-import { View, Image, TextInput, Text, ScrollView, Button, Alert } from "react-native";
+import React, { useState } from 'react';
+import { View, Image, TextInput, Text, ScrollView, Button, Alert, Modal, Pressable, StyleSheet } from "react-native";
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createDrawerNavigator } from '@react-navigation/drawer';
@@ -8,22 +8,50 @@ import { useNavigation } from '@react-navigation/native';
 import estilosCadastrar from './estilos/componentes/estilosCadastrar.js';
 import estilosLogin from './estilos/componentes/estilosLogin.js';
 import estilosProdutos from './estilos/componentes/estilosProdutos.js';
+import { useEffect } from 'react';
+import * as SQLite from 'expo-sqlite';
+import estilosCarrinho from './estilos/componentes/estilosCarrinho.js';
+
+// const db = SQLite.openDatabase('app.db');
 
 
+function Tela_Inicio_App({ navigation }) {
+    useEffect(() => {
+        // Aguarda 2 segundos e navega para a tela principal
+        const timer = setTimeout(() => {
+            navigation.replace('Principal');
+        }, 2000);
+        return () => clearTimeout(timer);
+    }, []);
 
-// const Tela_Inicio_App = () => {
-//   return (
-//     <View style={{ flex: 1 }}>
-//       <Image source={require('./imagens/logo_sao_luiz.jpg')
-//       } style={{
-//         width: 200,
-//         height: 200,
-//         margin: 'auto',
-//         marginTop: 290
-//       }}></Image>
-//     </View>
-//   );
-// };
+    return (
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+            <Image
+                source={require('./imagens/logo_sao_luiz.jpg')}
+                style={{
+                    width: 200,
+                    height: 200,
+                    marginTop: 10
+                }}
+            />
+        </View>
+    );
+}
+
+// Stack Navigator para controlar a navegação inicial
+
+const Stack = createNativeStackNavigator();
+
+function RootNavigator(props) {
+    return (
+        <Stack.Navigator initialRouteName="Inicio" screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="Inicio" component={Tela_Inicio_App} />
+            <Stack.Screen name="Principal">
+                {() => <MyDrawer {...props} />}
+            </Stack.Screen>
+        </Stack.Navigator>
+    );
+}
 
 // function Login (){
 //   return (
@@ -147,7 +175,7 @@ import estilosProdutos from './estilos/componentes/estilosProdutos.js';
 //   );
 // };
 
-function ProdutoScreen({ navigation }) {
+function ProdutoScreen({ adicionarProduto }) {
     return (
         <ScrollView style={estilosProdutos.barra_rolagem}>
             <View style={estilosProdutos.row}>
@@ -164,7 +192,9 @@ function ProdutoScreen({ navigation }) {
                         <Text>Chocolate Toddynho Caixa</Text>
                         <Text>200ml</Text>
                     </View>
-                    <View style={estilosProdutos.botao_adicionar}><Button title='adicionar'>
+                    <View style={estilosProdutos.botao_adicionar}><Button
+                        title="Adicionar"
+                        onPress={() => adicionarProduto({ nome: 'Toddynho', preco: 1.99 })}>
                     </Button>
                     </View>
 
@@ -182,7 +212,9 @@ function ProdutoScreen({ navigation }) {
                         <Text>Chocolate Nescau Caixa</Text>
                         <Text>180ml</Text>
                     </View>
-                    <View style={estilosProdutos.botao_adicionar}><Button title='adicionar'>
+                    <View style={estilosProdutos.botao_adicionar}><Button
+                        title="Adicionar"
+                        onPress={() => adicionarProduto({ nome: 'Nescau', preco: 3.49 })}>
                     </Button>
                     </View>
                 </View>
@@ -201,7 +233,9 @@ function ProdutoScreen({ navigation }) {
                         <Text>Desnatado Morango</Text>
                         <Text>Itambé Frasco 170g</Text>
                     </View>
-                    <View style={estilosProdutos.botao_adicionar}><Button title='adicionar'>
+                    <View style={estilosProdutos.botao_adicionar}><Button
+                        title="Adicionar"
+                        onPress={() => adicionarProduto({ nome: 'Iogurte Parcilamente Desnatado Morango', preco: 3.99 })}>
                     </Button>
                     </View>
                 </View>
@@ -218,7 +252,9 @@ function ProdutoScreen({ navigation }) {
                         <Text>Desnatado Morango</Text>
                         <Text>Salada de Frutas</Text>
                     </View>
-                    <View style={estilosProdutos.botao_adicionar}><Button title='adicionar'>
+                    <View style={estilosProdutos.botao_adicionar}><Button
+                        title="Adicionar"
+                        onPress={() => adicionarProduto({ nome: 'Iogurte Ninho Morango', preco: 7.99 })}>
                     </Button>
                     </View>
                 </View>
@@ -237,7 +273,9 @@ function ProdutoScreen({ navigation }) {
                         <Text>Desnatado Grego</Text>
                         <Text>Maracujá + Morango</Text>
                     </View>
-                    <View style={estilosProdutos.botao_adicionar}><Button title='adicionar'>
+                    <View style={estilosProdutos.botao_adicionar}><Button
+                        title="Adicionar"
+                        onPress={() => adicionarProduto({ nome: 'Iogurte Nestlé Grego', preco: 6.98 })}>
                     </Button>
                     </View>
                 </View>
@@ -255,7 +293,9 @@ function ProdutoScreen({ navigation }) {
                         <Text>Bebida</Text>
                         <Text>850g</Text>
                     </View>
-                    <View style={estilosProdutos.botao_adicionar_danone}><Button title='adicionar'>
+                    <View style={estilosProdutos.botao_adicionar_danone}><Button
+                        title="Adicionar"
+                        onPress={() => adicionarProduto({ nome: 'Iogurte Danone Morango', preco: 12.22 })}>
                     </Button>
                     </View>
                 </View>
@@ -274,7 +314,9 @@ function ProdutoScreen({ navigation }) {
                         <Text>Chocolate Toddynho Caixa</Text>
                         <Text>200ml</Text>
                     </View>
-                    <View style={estilosProdutos.botao_adicionar}><Button title='adicionar'>
+                    <View style={estilosProdutos.botao_adicionar}><Button
+                        title="Adicionar"
+                        onPress={() => adicionarProduto({ nome: '', preco: 1.99 })}>
                     </Button>
                     </View>
 
@@ -484,42 +526,97 @@ function ProdutoScreen({ navigation }) {
     );
 };
 
-function CarrinhoScreen({ navigation }) {
-    return (
-        <ScrollView style={estilosProdutos.barra_rolagem}>
-            <View style={{ flex: 1 }}>
-                <Image source={require('./imagens/carrinho/carrinho.png')
-                } style={{
-                    width: 200,
-                    height: 200,
-                    marginTop: 20,
-                    marginLeft: 90,
-                    marginRight: 90,
-                    margin: 'auto'
-                }}></Image>
-            </View>
-        </ScrollView >
+function CarrinhoScreen({ carrinho, setCarrinho, comprasRealizadas, setComprasRealizadas }) {
+    const [modalVisible, setModalVisible] = useState(false);
 
-    );
-};
+    const botaoCorComprar = carrinho.length > 0 ? "#008000" : "#808080";
+    const botaoCorRemover = carrinho.length > 0 ? "#FF0000" : "#808080";
 
-function EntregaScreen({ navigation }) {
+    const confirmarCompra = () => {
+        setModalVisible(false);
+        if (carrinho.length > 0) {
+            setComprasRealizadas([...comprasRealizadas, ...carrinho]); // Adiciona os itens do carrinho às compras realizadas
+            setCarrinho([]); // Limpa o carrinho
+            Alert.alert('Compra confirmada!', 'Agora confirme a entrega.');
+        }
+    };
+
     return (
-        <ScrollView style={estilosProdutos.barra_rolagem}>
-            <View style={{ flex: 1 }}>
-                <Image source={require('./imagens/entrega/entrega.png')
-                } style={{
-                    width: 200,
-                    height: 200,
-                    margin: 'auto',
-                    marginLeft: 90,
-                    marginRight: 90,
-                    marginTop: 20
-                }}></Image>
+        <ScrollView style={estilosCarrinho.barra_de_rolagem}>
+            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', marginTop: -90 }}>
+                <Image
+                    source={require('./imagens/carrinho/carrinho.png')}
+                    style={{
+                        width: 200,
+                        height: 200,
+                        marginLeft: -4
+                    }}
+                />
+                <View style={[estilosCarrinho.conteiner_botoes, { flexDirection: 'row', justifyContent: 'center', marginLeft: 60 }]}>
+                    <View style={{ marginRight: 20 }}>
+                        <Button
+                            title="R$ Comprar"
+                            color={botaoCorComprar}
+                            onPress={() => setModalVisible(true)}
+                            disabled={carrinho.length === 0}
+                        />
+                    </View>
+                    <View style={{ marginLeft: 20 }}>
+                        <Button title="Remover" color={botaoCorRemover} />
+                    </View>
+                </View>
+                <View>
+                    {carrinho.length === 0 && <Text style={estilosCarrinho.title_carrinho}>Nenhum item no carrinho</Text>}
+                    {carrinho.map((item, idx) => (
+                        <Text key={idx} style={estilosCarrinho.title_carrinho}>{item.nome} - R$ {item.preco}</Text>
+                    ))}
+                </View>
             </View>
-        </ScrollView >
+
+            {/* Modal de confirmação */}
+            <Modal
+                animationType="slide"
+                transparent={true}
+                visible={modalVisible}
+                onRequestClose={() => setModalVisible(false)}
+            >
+                <View style={styles.centeredView}>
+                    <View style={styles.modalView}>
+                        <Text style={styles.modalText}>Deseja confirmar a compra?</Text>
+                        <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                            <Button title="Não" color="#FF0000" onPress={() => setModalVisible(false)} />
+                            <View style={{ width: 20 }} />
+                            <Button title="Sim" color="#008000" onPress={confirmarCompra} />
+                        </View>
+                    </View>
+                </View>
+            </Modal>
+        </ScrollView>
     );
-};
+}
+
+function EntregaScreen({ comprasRealizadas }) {
+    return (
+        <ScrollView style={estilosCarrinho.barra_de_rolagem}>
+            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', marginTop: 10 }}>
+                <Image
+                    source={require('./imagens/entrega/entrega.png')}
+                    style={{
+                        width: 200,
+                        height: 200
+                    }}
+                />
+                <View>
+                    {comprasRealizadas.length === 0 && <Text style={estilosCarrinho.title_carrinho}>Nenhum item para entrega</Text>}
+                    {comprasRealizadas.map((item, idx) => (
+                        <Text key={idx} style={estilosCarrinho.title_carrinho}>{item.nome} - R$ {item.preco}</Text>
+                    ))}
+                </View>
+            </View>
+        </ScrollView>
+    );
+}
+
 
 function ConfiguracaoScreen({ navigation }) {
     return (
@@ -535,8 +632,7 @@ function ConfiguracaoScreen({ navigation }) {
             </View>
             <View style={estilosCadastrar.conteiner}>
                 <View style={estilosCadastrar.conteiner_input}>
-                    <Text style={estilosCadastrar.texto_algin}
-                    >Usuário:</Text>
+                    <Text style={estilosCadastrar.texto_algin}>Usuário:</Text>
                     <TextInput
                         style={estilosCadastrar.meutextinput}
                         keyboardType="default">
@@ -582,34 +678,107 @@ function ConfiguracaoScreen({ navigation }) {
     );
 }
 
+
+
+const styles = StyleSheet.create({
+    centeredView: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    modalView: {
+        margin: 20,
+        backgroundColor: 'white',
+        borderRadius: 20,
+        padding: 35,
+        alignItems: 'center',
+        shadowColor: 'black',
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 4,
+        elevation: 5,
+    },
+    button: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        margin: 15
+    },
+    buttonOpen: {
+        backgroundColor: '#2196F3',
+    },
+    buttonClose: {
+        backgroundColor: '#2196F3',
+    },
+    textStyle: {
+        color: 'white',
+        fontWeight: 'bold',
+        textAlign: 'center',
+    },
+    modalText: {
+        marginBottom: 15,
+        textAlign: 'center',
+        fontSize: 16,
+    },
+});
+
 const Tab = createBottomTabNavigator();
 
-function MyTabs() {
+function MyTabs({ adicionarProduto, carrinho, setCarrinho, comprasRealizadas, setComprasRealizadas }) {
     return (
         <Tab.Navigator>
-            <Tab.Screen name="Ofertas" component={ProdutoScreen} />
-            <Tab.Screen name="Carrinho" component={CarrinhoScreen} />
-            <Tab.Screen name="Entrega" component={EntregaScreen} />
+            <Tab.Screen name="Ofertas">
+                {() => <ProdutoScreen adicionarProduto={adicionarProduto} />}
+            </Tab.Screen>
+            <Tab.Screen name="Carrinho">
+                {() => <CarrinhoScreen
+                    carrinho={carrinho}
+                    setCarrinho={setCarrinho}
+                    comprasRealizadas={comprasRealizadas}
+                    setComprasRealizadas={setComprasRealizadas}
+                />}
+            </Tab.Screen>
+            <Tab.Screen name="Entrega">
+                {() => <EntregaScreen comprasRealizadas={comprasRealizadas} />}
+            </Tab.Screen>
         </Tab.Navigator>
     );
 }
 
 const Drawer = createDrawerNavigator()
 
-function MyDrawer() {
+function MyDrawer(props) {
     return (
         <Drawer.Navigator>
-            <Drawer.Screen name='São Luiz' component={MyTabs}></Drawer.Screen>
-            <Drawer.Screen name='Configuracões' component={ConfiguracaoScreen}></Drawer.Screen>
+            <Drawer.Screen name='São Luiz'>
+                {() => <MyTabs {...props} />}
+            </Drawer.Screen>
+            <Drawer.Screen name='Configurações' component={ConfiguracaoScreen} />
         </Drawer.Navigator>
     );
-};
+}
 
-export default function AppMain() {
+function App() {
+    const [carrinho, setCarrinho] = useState([]);
+    const [comprasRealizadas, setComprasRealizadas] = useState([]);
+
+    const adicionarProduto = (produto) => {
+        setCarrinho([...carrinho, produto]);
+    };
+
     return (
         <NavigationContainer>
-            <MyDrawer></MyDrawer>
+            <RootNavigator
+                adicionarProduto={adicionarProduto}
+                carrinho={carrinho}
+                setCarrinho={setCarrinho}
+                comprasRealizadas={comprasRealizadas}
+                setComprasRealizadas={setComprasRealizadas}
+            />
         </NavigationContainer>
     );
+}
 
-};
+export default App;
